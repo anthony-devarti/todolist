@@ -21,26 +21,33 @@ function App() {
   console.log(toDos)
   
   
+  function addTodo(text){
+    let newState = toDos;
+    newState.push({text:[text], id:'0', status:'active'})
+    setToDos(newState)
+    console.log(toDos)
+  }
+  
   // useEffect(()=> {
-  //       setToDos();
-  //       console.log(toDos)
-  //       //setLocalStorage() this probably goes here, but I'll deal with that later
-  //   },[]);
-
-  return (
-    <>
+    //       setToDos();
+    //       console.log(toDos)
+    //       //setLocalStorage() this probably goes here, but I'll deal with that later
+    //   },[]);
+    
+    return (
+      <>
     <div>
             <Card>
-                <Card.Header><h1>To Do List</h1></Card.Header>
+                <Card.Header><h1>To-Do List</h1></Card.Header>
                 <Card.Body>
                     <Card.Title><Input /></Card.Title>
                     <Card.Text>
                     <ToDoItem />
                     </Card.Text>
-                    <Button variant="primary">All</Button>
-                    <Button variant="primary">Active</Button>
-                    <Button variant="primary">Completed</Button>
-                    <Button variant="primary">Clear Completed</Button>
+                    <Button onClick={addTodo} variant="secondary mb-2">All</Button>
+                    <Button variant="secondary mb-2" >Active</Button>
+                    <Button variant="secondary mb-2" >Completed</Button>
+                    <Button variant="secondary mb-2" >Clear Completed</Button>
                 </Card.Body>
             </Card>
         </div>

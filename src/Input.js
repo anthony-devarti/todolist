@@ -1,13 +1,10 @@
-import { useState } from "react"
 import { InputGroup, FormControl } from "react-bootstrap"
 
 export default function Input (){
-
-    function addTodo(){
-        let newState = toDos;
-        newState.push({text:'some hard coded object', id:'0', status:''})
-        setToDos(newState)
-      }
+//add an onKeyDown event listener for the return key to generate a new
+//object, set its text to the contents of the text box, give it a new ID, and add it 
+//to the toDos array in state.
+    
 
     return (
         <InputGroup className="mb-3">
