@@ -1,9 +1,30 @@
 import './App.css';
 import Input from './Input';
 import { Card, Button } from 'react-bootstrap'
+import { useState, useEffect } from 'react';
+import ToDoItem from './ToDoitem';
 
 
 function App() {
+  const [toDos, setToDos] = useState([
+    {
+      text:'this is an example todo',
+      id:'0',
+      status:'active'
+    },
+    {
+      text:'another one',
+      id:'-1',
+      status:'done'
+    }
+  ])
+  console.log(toDos)
+  
+  useEffect(()=> {
+        setToDos();
+        //setLocalStorage() this probably goes here, but I'll deal with that later
+    },[]);
+
   return (
     <>
     <div>
@@ -12,7 +33,7 @@ function App() {
                 <Card.Body>
                     <Card.Title><Input /></Card.Title>
                     <Card.Text>
-                    This is where the TodosDisplay will go
+                    <ToDoItem />
                     </Card.Text>
                     <Button variant="primary">All</Button>
                     <Button variant="primary">Active</Button>
