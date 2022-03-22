@@ -20,10 +20,12 @@ function App() {
   ])
   console.log(toDos)
   
-  useEffect(()=> {
-        setToDos();
-        //setLocalStorage() this probably goes here, but I'll deal with that later
-    },[]);
+  
+  // useEffect(()=> {
+  //       setToDos();
+  //       console.log(toDos)
+  //       //setLocalStorage() this probably goes here, but I'll deal with that later
+  //   },[]);
 
   return (
     <>

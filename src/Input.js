@@ -3,7 +3,11 @@ import { InputGroup, FormControl } from "react-bootstrap"
 
 export default function Input (){
 
-    const [toDos, setToDos] = useState([{text:'this is an example todo', id:'0'}])
+    function addTodo(){
+        let newState = toDos;
+        newState.push({text:'some hard coded object', id:'0', status:''})
+        setToDos(newState)
+      }
 
     return (
         <InputGroup className="mb-3">
@@ -15,4 +19,5 @@ export default function Input (){
             />
         </InputGroup>
     )
+
 }
