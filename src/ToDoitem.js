@@ -19,6 +19,7 @@ export default function ToDoItem({setToDos, toDos}){
 
     //how to get the specific text value of one todo to appear in here
     function ListItem(toDo){
+      console.log('todo', toDo)
       return <li>{toDo.text}</li>
     }
 

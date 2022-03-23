@@ -13,7 +13,7 @@ export default function Input ({setToDos, toDos}){
         console.log('this is where I try to find the form value')
         let newState = toDos;
         let identifier = Date.now();
-        newState.push({text:{task}, id:{identifier}, status:'active'})
+        newState.push({text: task, id: identifier, status:'active'})
         setToDos([...newState])
         //setLocalStorage should probably happen here.
         console.log(toDos)
