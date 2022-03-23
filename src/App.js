@@ -26,7 +26,10 @@ function App() {
     //the goal is to get the text from the text box into the text field.
     //it also should generate a unique ID that should greatest ID+1
     //status should be active by default this is probably fine to leave as a string
-    newState.push({text:"example todo", id:'0', status:'active'})
+
+    //setting the id to be the time in ms
+    let identifier = Date.now()
+    newState.push({text:"example todo", id:[identifier], status:'active'})
     setToDos(newState)
     //setLocalStorage should probably happen here.
     console.log(toDos)
@@ -44,11 +47,11 @@ function App() {
             <Card>
                 <Card.Header><h1>To-Do List</h1></Card.Header>
                 <Card.Body>
-                    <Card.Title><Input /><button onClick={addTodo} variant="secondary">Add</button></Card.Title>
+                    <Card.Title><Input /></Card.Title>
                     <Card.Text>
                     <ToDoItem />
                     </Card.Text>
-                    <Button variant="secondary mb-2">All</Button>
+                    <Button variant="secondary mb-2" onClick={addTodo}>All</Button>
                     <Button variant="secondary mb-2" >Active</Button>
                     <Button variant="secondary mb-2" >Completed</Button>
                     <Button variant="secondary mb-2" >Clear Completed</Button>
