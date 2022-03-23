@@ -49,7 +49,9 @@ function App() {
                 <Card.Body>
                     <Card.Title><Input setToDos={setToDos} toDos={toDos}/></Card.Title>
                     <Card.Text>
-                    <ToDoItem />
+                      <div>
+                        <ToDoItem setToDos={setToDos} toDos={toDos}/>
+                      </div>
                     </Card.Text>
                     <Button variant="secondary mb-2" onClick={addTodo}>All</Button>
                     <Button variant="secondary mb-2" >Active</Button>
