@@ -1,4 +1,4 @@
-import { ToggleButton } from "react-bootstrap"
+import { ToggleButton, Button } from "react-bootstrap"
 import { useState } from "react";
 
 export default function ToDoItem({setToDos, toDos}){
@@ -22,13 +22,22 @@ export default function ToDoItem({setToDos, toDos}){
       console.log('todo', toDo)
       return <li>{toDo.text}</li>
     }
+    //use the filter method on a copy of the state object to filter by key, 
+    //then replace the state object with the filtered one
+    function abobo(){
+      toDos
+    }
 
     function toDoList(toDos){
       const toDoList = toDos.map((toDo)=>
-        <ListItem key={toDo.id} text={toDo.text} />
+      <>
+        <ListItem key={toDo.id} text={toDo.text} /><button variant='outline-danger'>x</button>
+        </>
       );
       return (
+        <>
         <ul>{toDoList}</ul>
+        </>
       );
     }
     
