@@ -47,7 +47,7 @@ function App() {
             <Card>
                 <Card.Header><h1>To-Do List</h1></Card.Header>
                 <Card.Body>
-                    <Card.Title><Input /></Card.Title>
+                    <Card.Title><Input setToDos={setToDos} toDos={toDos}/></Card.Title>
                     <Card.Text>
                     <ToDoItem />
                     </Card.Text>
