@@ -3,6 +3,7 @@ import Input from './Input';
 import { Card, Button } from 'react-bootstrap'
 import { useEffect, useState } from 'react';
 import ToDoItem from './ToDoitem';
+import ButtonGroup from './ButtonGroup';
 
 
 function App() {
@@ -11,23 +12,61 @@ function App() {
     const initialValue = JSON.parse(saved);
     return initialValue || [
       {
-          text:'this is an example todo',
+          text:'this is a To-Do task',
           id:89868689,
           status:'active'
         },
         {
-          text:'another one',
+          text:'click the check mark to mark me as complete',
           id:5678765,
+          status:'active'
+        },
+        {
+          text:'click the trash icon to delete me',
+          id:5678766,
+          status:'active'
+        },
+        {
+          text:'click delete or clear to remove completed todos',
+          id:5678767,
           status:'done'
         }
     ]  
   })
 
+  const[filter, setFilter] = useState(() => item => item.status !== 'deleted');
+
   //this saves to local storage
   useEffect(()=>{
     localStorage.setItem('toDos', JSON.stringify(toDos));
-
   })
+
+  const showAll = ()=>{
+    console.log('all')
+    setFilter(()=>item=>item.status!=='deleted')
+  }
+
+  const active = ()=>{
+    console.log('active')
+    setFilter(()=>item=>item.status==='active')
+  }
+
+  const completed = () => {
+    console.log('completed')
+    setFilter(()=>item=>item.status==='done')
+  }
+
+  const clear = () => {
+    console.log('clear')
+    toDos.forEach ((item)=>{
+      if (item.status==='done'){
+        item.status='deleted'
+      }
+    })
+    let newState = toDos;
+    setToDos([...newState])
+  }
+
     
     return (
       <>
@@ -38,13 +77,10 @@ function App() {
                     <Card.Title><Input setToDos={setToDos} toDos={toDos}/></Card.Title>
                     <Card.Text>
                       <div>
-                        <ToDoItem setToDos={setToDos} toDos={toDos}/>
+                        <ToDoItem setToDos={setToDos} toDos={toDos} filter={filter}/>
                       </div>
                     </Card.Text>
-                    <Button variant="secondary mb-2" >All</Button>
-                    <Button variant="secondary mb-2" >Active</Button>
-                    <Button variant="secondary mb-2" >Completed</Button>
-                    <Button variant="secondary mb-2" >Clear Completed</Button>
+                    <ButtonGroup showAll={showAll} active={active} completed={completed} clear={clear}/>
                 </Card.Body>
             </Card>
         </div>
