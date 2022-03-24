@@ -24,16 +24,36 @@ export default function ToDoItem({setToDos, toDos}){
     //take the id of the object with the button attached
     //filter down to that specific object
     //change the status of that object to 'deleted'
-    function deleteToDo(){
-      console.log('click')
+    function deleteToDo(id, e){
+      console.log('deleting id:', id, e);
+      let targetitem = toDos.find(item=>item.id===id)
+      targetitem.status='deleted'
+      console.log('deleting task:', targetitem, toDos);
+      
     }
 
+    //take the id of the object with the button attached
+    //filter down to that specific object
+    //change the status of that object to 'deleted'
+    function completeToDo(id, e){
+      console.log('target id:', id, e);
+      let targetitem = toDos.find(item=>item.id===id)
+      targetitem.status='done'
+      console.log('marking as complete task:', targetitem, toDos);
+      
+    }
 
     //the x button needs to hand the id of the item to which it is attached over to the delete function
     function toDoList(toDos){
-      const toDoList = toDos.map((toDo)=>
-      <>
-        <ListItem iniqueId={toDo.key} text={toDo.text} status='active'/><button variant='outline-danger' onClick={deleteToDo}>x</button>
+      const toDoList = toDos.map((item)=>
+        <>
+        <button id={item.id} variant='outline-danger' onClick={(e)=>{
+          completeToDo(item.id, e)
+        }}>v</button>
+        <ListItem uniqueId={item.id} key={item.id} text={item.text} status='active'/>
+        <button id={item.id} variant='outline-danger' onClick={(e)=>{
+          deleteToDo(item.id, e)
+        }}>x</button>
         </>
       );
       return (

@@ -13,7 +13,7 @@ export default function Input ({setToDos, toDos}){
         console.log('this is where I try to find the form value')
         let newState = toDos;
         let identifier = Date.now();
-        newState.push({text: task, key: identifier, status:'active'})
+        newState.push({text: value, id: identifier, status:'active'})
         setToDos([...newState])
         //setLocalStorage should probably happen here.
         console.log(toDos)
@@ -22,12 +22,12 @@ export default function Input ({setToDos, toDos}){
 
     
 
-    const [task, setTask] = useState()
+    const [value, setValue] = useState()
     
 
     return (
         <form onSubmit={handleSubmit}>
-            <input onChange={e => setTask(e.target.value)} placeholder="What's getting added to your list?" />
+            <input onChange={e => setValue(e.target.value)} placeholder="What's getting added to your list?" />
             <button>Go</button>
         </form>
     )

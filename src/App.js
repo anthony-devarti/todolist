@@ -7,14 +7,17 @@ import ToDoItem from './ToDoitem';
 
 function App() {
   const [toDos, setToDos] = useState([
+    //text is the text of the todo item
+    //id is the unique identifier for the item
+    //status can be active or done or deleted
     {
       text:'this is an example todo',
-      key:0,
+      id:89868689,
       status:'active'
     },
     {
       text:'another one',
-      key:1,
+      id:1,
       status:'done'
     }
   ])
