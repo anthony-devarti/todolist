@@ -20,7 +20,6 @@ export default function Input ({setToDos, toDos}){
 
     }
 
-    
 
     const [value, setValue] = useState()
     

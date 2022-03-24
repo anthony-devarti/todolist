@@ -1,27 +1,63 @@
 import './App.css';
 import Input from './Input';
 import { Card, Button } from 'react-bootstrap'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ToDoItem from './ToDoitem';
 
 
 function App() {
-  const [toDos, setToDos] = useState([
-    //text is the text of the todo item
-    //id is the unique identifier for the item
-    //status can be active or done or deleted
-    {
-      text:'this is an example todo',
-      id:89868689,
-      status:'active'
-    },
-    {
-      text:'another one',
-      id:1,
-      status:'done'
-    }
-  ])
-  console.log(toDos)
+  const [toDos, setToDos] = useState(()=>{
+    // text is the text of the todo item
+    // id is the unique identifier for the item
+    // status can be active or done or deleted
+    // {
+    //   text:'this is an example todo',
+    //   id:89868689,
+    //   status:'active'
+    // },
+    // {
+    //   text:'another one',
+    //   id:5678765,
+    //   status:'done'
+    // }
+    const saved = localStorage.getItem("toDos");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [
+      {
+          text:'this is an example todo',
+          id:89868689,
+          status:'active'
+        },
+        {
+          text:'another one',
+          id:5678765,
+          status:'done'
+        }
+
+    ]
+    
+  })
+
+  //this should be saving to local storage.  it looks like its working
+  useEffect(()=>{
+    localStorage.setItem('toDos', JSON.stringify(toDos));
+
+  })
+
+  //this should be retrieving from local storage, but it doesn't look like its doing that
+  // useEffect(() => {
+  //   const savedData = JSON.parse(localStorage.getItem('toDos'));
+  //   if (savedData) {
+  //    setToDos([...savedData]);
+  //   }
+  // },[]);
+
+  // const [start, setStart] = useState(() => {
+  //   // getting stored value
+  //   const saved = localStorage.getItem("toDos");
+  //   const initialValue = JSON.parse(saved);
+  //   return initialValue || "";
+  // });
   
   // function addTodo(){
   //   //this can't be right.  There should be a way to get the info directly from the input field
