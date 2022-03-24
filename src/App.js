@@ -1,48 +1,33 @@
 import './App.css';
 import Input from './Input';
 import { Card, Button } from 'react-bootstrap'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ToDoItem from './ToDoitem';
 
 
 function App() {
-  const [toDos, setToDos] = useState([
-    //text is the text of the todo item
-    //id is the unique identifier for the item
-    //status can be active or done or deleted
-    {
-      text:'this is an example todo',
-      id:89868689,
-      status:'active'
-    },
-    {
-      text:'another one',
-      id:1,
-      status:'done'
-    }
-  ])
-  console.log(toDos)
-  
-  // function addTodo(){
-  //   //this can't be right.  There should be a way to get the info directly from the input field
-  //   let newState = toDos;
-  //   //the goal is to get the text from the text box into the text field.
-  //   //it also should generate a unique ID that should greatest ID+1
-  //   //status should be active by default this is probably fine to leave as a string
+  const [toDos, setToDos] = useState(()=>{
+    const saved = localStorage.getItem("toDos");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [
+      {
+          text:'this is an example todo',
+          id:89868689,
+          status:'active'
+        },
+        {
+          text:'another one',
+          id:5678765,
+          status:'done'
+        }
+    ]  
+  })
 
-  //   //setting the id to be the time in ms
-  //   let identifier = Date.now()
-  //   newState.push({text:"example todo", key:[identifier], status:'active'})
-  //   setToDos(newState)
-  //   //setLocalStorage should probably happen here.
-  //   console.log(toDos)
-  // }
-  
-  // useEffect(()=> {
-    //       setToDos();
-    //       console.log(toDos)
-    //       //setLocalStorage() this probably goes here, but I'll deal with that later
-    //   },[]);
+  //this saves to local storage
+  useEffect(()=>{
+    localStorage.setItem('toDos', JSON.stringify(toDos));
+
+  })
     
     return (
       <>
