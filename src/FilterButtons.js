@@ -1,6 +1,6 @@
 import { Button, ButtonGroup } from "react-bootstrap"
 
-export default function FilterButtons({showAll, active, completed, clear, deleted}){
+export default function FilterButtons({showAll, active, completed, clear, deleted, reactivate}){
     return (
         <ButtonGroup size='sm'>
         <Button variant="secondary mb-2" onClick={showAll}>All</Button>
@@ -8,6 +8,7 @@ export default function FilterButtons({showAll, active, completed, clear, delete
         <Button variant="secondary mb-2" onClick={completed}>Completed</Button>
         <Button variant="secondary mb-2" onClick={clear}>Clear Completed</Button>
         <Button variant="secondary mb-2" onClick={deleted}>Recently Deleted</Button>
+        <Button variant="secondary mb-2" onClick={reactivate}>Reactivate</Button>
         </ButtonGroup>
     )
 }
