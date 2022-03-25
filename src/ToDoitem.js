@@ -1,14 +1,14 @@
 // import { ToggleButton, Button, outline } from "react-bootstrap"
 // import { useState } from "react";
 
-export default function ToDoItem({setToDos, toDos, filter}){
+export default function ToDoItem({setToDos, toDos, filter, max}){
     
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
     //https://reactjs.org/docs/lists-and-keys.html
     console.log('I am rendering')
  
     function ListItem(toDo, uniqueId, status){
-      console.log('todo', toDo, uniqueId, status)
+      //console.log('todo', toDo, uniqueId, status)
       return <li>
         
         {toDo.text}
@@ -26,6 +26,7 @@ export default function ToDoItem({setToDos, toDos, filter}){
       let newState=toDos
       console.log('deleting task:', targetitem, toDos);
       setToDos([...newState])
+      max()
     }
 
     //take the id of the object with the button attached
@@ -38,6 +39,7 @@ export default function ToDoItem({setToDos, toDos, filter}){
       let newState = toDos
       console.log('marking as complete task:', targetitem);
       setToDos([...newState])
+      max()
       
     }
 

@@ -67,17 +67,29 @@ function App() {
     setToDos([...newState])
   }
 
-    
+  //this should remove oldest todos if we're saving over 50 of them
+  //this only deletes the oldest one regardless of its status
+  //should go through and fix this to only delete oldest ones and have a catch if all 50 are active
+  const max= ()=>{
+    const overMax = toDos.length-50
+      if(overMax>0){
+        console.log('hit the maximum')
+        toDos.splice(0,overMax)
+        let newState = toDos
+        setToDos([...newState])
+      }
+    }
+
     return (
       <>
         <div>
             <Card>
                 <Card.Header><h1>To-Do List</h1></Card.Header>
                 <Card.Body>
-                    <Card.Title><Input setToDos={setToDos} toDos={toDos}/></Card.Title>
+                    <Card.Title><Input max={max} setToDos={setToDos} toDos={toDos}/></Card.Title>
                     <Card.Text>
                       <div>
-                        <ToDoItem setToDos={setToDos} toDos={toDos} filter={filter}/>
+                        <ToDoItem max={max} setToDos={setToDos} toDos={toDos} filter={filter}/>
                       </div>
                     </Card.Text>
                     <ButtonGroup showAll={showAll} active={active} completed={completed} clear={clear}/>
