@@ -1,6 +1,6 @@
 import './App.css';
 import Input from './Input';
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, Badge } from 'react-bootstrap'
 import { useEffect, useState } from 'react';
 import ToDoItem from './ToDoitem';
 import Buttons from './FilterButtons';
@@ -74,7 +74,18 @@ function App() {
       }
     })
     let newState = toDos;
-    setToDos([...newState])
+    setToDos([...newState]);
+  }
+
+  const reactivate = () =>{
+    console.log('reactivate');
+    toDos.forEach ((item)=>{
+      if (item.status='done'){
+        item.status='active';
+      }
+    })
+    let newState = toDos;
+    setToDos([...newState]);
   }
 
   //this should remove oldest todos if we're saving over 50 of them
@@ -90,6 +101,9 @@ function App() {
       }
     }
 
+  let filtered = toDos.filter((item)=>item.status==='active')
+  let remain = filtered.length
+
     return (
       <Card>
           <Card.Header><h1>To-Do List</h1></Card.Header>
@@ -100,8 +114,9 @@ function App() {
                   <ToDoItem max={max} setToDos={setToDos} toDos={toDos} filter={filter}/>
                 </div>
               </Card.Text>
-              <FilterButtons deleted={deleted} showAll={showAll} active={active} completed={completed} clear={clear}/>
+              <FilterButtons reactivate={reactivate} deleted={deleted} showAll={showAll} active={active} completed={completed} clear={clear}/>
           </Card.Body>
+              <Badge bg='secondary'>You still have {remain} things to do!</Badge>
       </Card>
     );
 }

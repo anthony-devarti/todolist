@@ -17,12 +17,20 @@ export default function ToDoItem({setToDos, toDos, filter, max}){
     function deleteToDo(id, e){
       console.log('deleting id:', id, e);
       let targetitem = toDos.find(item=>item.id===id)
-      targetitem.status='deleted';
-      let newState=toDos;
-      console.log('deleting task:', targetitem, toDos);
-      //state will only update if I redefine it.
-      setToDos([...newState]);
-      max();
+      if (targetitem.status!=='deleted'){
+        targetitem.status='deleted';
+        let newState=toDos;
+        console.log('deleting task:', targetitem);
+        //state will only update if I redefine it.
+        setToDos([...newState]);
+        max();
+      } else if (targetitem.status==='deleted'){
+        console.log('permanently deleting', targetitem.id);
+        let crosshairs = toDos.indexOf(targetitem);
+        toDos.splice(crosshairs, 1)
+        let newState=toDos;
+        setToDos([...newState]);
+      } else { console.log('something unexpected is happening')}
     }
 
     //take the id of the object with the button attached
@@ -31,11 +39,17 @@ export default function ToDoItem({setToDos, toDos, filter, max}){
     function completeToDo(id, e){
       console.log('target id:', id, e);
       let targetitem = toDos.find(item=>item.id===id);
-      targetitem.status='done';
-      let newState = toDos;
-      console.log(targetitem, toDos);
-      setToDos([...newState]);
-      max();  
+      if (targetitem.status==='deleted'){
+        targetitem.status='active';
+        let newState=toDos;
+        setToDos([...newState])
+      }else{
+        targetitem.status='done';
+        let newState = toDos;
+        console.log(targetitem, toDos);
+        setToDos([...newState]);
+        max();
+      }    
     }
 
     //generates the jsx for each todo item.  gives them buttons, assigns an id to each div generated
