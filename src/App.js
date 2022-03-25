@@ -1,9 +1,8 @@
 import './App.css';
 import Input from './Input';
-import { Card, Button, Badge } from 'react-bootstrap'
+import { Card, Badge } from 'react-bootstrap'
 import { useEffect, useState } from 'react';
 import ToDoItem from './ToDoitem';
-import Buttons from './FilterButtons';
 import FilterButtons from './FilterButtons';
 
 
@@ -102,7 +101,7 @@ function App() {
     }
 
   let filtered = toDos.filter((item)=>item.status==='active')
-  let remain = filtered.length
+  let thisMany = filtered.length
 
     return (
       <Card>
@@ -110,13 +109,11 @@ function App() {
           <Card.Body>
               <Card.Title><Input max={max} setToDos={setToDos} toDos={toDos}/></Card.Title>
               <Card.Text>
-                <div>
                   <ToDoItem max={max} setToDos={setToDos} toDos={toDos} filter={filter}/>
-                </div>
               </Card.Text>
               <FilterButtons reactivate={reactivate} deleted={deleted} showAll={showAll} active={active} completed={completed} clear={clear}/>
           </Card.Body>
-              <Badge bg='secondary'>You still have {remain} things to do!</Badge>
+              <Badge bg='secondary'>You have {thisMany} things to do! That's less than {thisMany+1} things.</Badge>
       </Card>
     );
 }

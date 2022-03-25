@@ -7,8 +7,19 @@
 }
 
 .card {
-  width: 75vw;
+  width: 80vw;
   align-self: center;
+}
+
+.card-header{
+  align-items: center;
+  text-align: center;
+  background-color: rgb(101, 130, 153);
+}
+
+.mb-3{
+  align-items: center;
+  flex-direction: row;
 }
 
 .li{
@@ -17,4 +28,12 @@
 
 .done{
   text-decoration: line-through;
+}
+
+.btn{
+  cursor: default !important;
+}
+
+.button{
+  cursor: default !important;
 }
