@@ -1,4 +1,4 @@
-// import { InputGroup, FormControl } from "react-bootstrap"
+import { InputGroup, Form, FloatingLabel } from "react-bootstrap"
 import { useState } from "react";
 
 export default function Input ({setToDos, toDos, max}){
@@ -26,10 +26,10 @@ const [value, setValue] = useState('')
     
 
     return (
-        <form onSubmit={handleSubmit}>
+        <Form className="mb-3" onSubmit={handleSubmit}>
             <input onChange={e => setValue(e.target.value)} value={value} placeholder="What's getting done?" />
             <button>Go</button>
-        </form>
+        </Form>
     )
 
 }
