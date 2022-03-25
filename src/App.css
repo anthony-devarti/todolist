@@ -1,0 +1,20 @@
+.App {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  
+}
+
+.card {
+  width: 75vw;
+  align-self: center;
+}
+
+.li{
+  flex-wrap: nowrap;
+}
+
+.done{
+  text-decoration: line-through;
+}
