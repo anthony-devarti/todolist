@@ -1,52 +1,47 @@
 // import { ToggleButton, Button, outline } from "react-bootstrap"
 // import { useState } from "react";
 
-export default function ToDoItem({setToDos, toDos, filter, max}){
-    
+export default function ToDoItem({setToDos, toDos, filter, max}){  
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
     //https://reactjs.org/docs/lists-and-keys.html
     console.log('I am rendering')
  
     function ListItem(toDo, uniqueId, status){
       //console.log('todo', toDo, uniqueId, status)
-      return <li>
-        
-        {toDo.text}
-        
-        </li>
+      return <li>{toDo.text}</li>
     }
+
     //take the id of the object with the button attached
     //filter down to that specific object
     //change the status of that object to 'deleted'
     function deleteToDo(id, e){
       console.log('deleting id:', id, e);
       let targetitem = toDos.find(item=>item.id===id)
-      targetitem.status='deleted'
-      //state will only update if I redefine it.
-      let newState=toDos
+      targetitem.status='deleted';
+      let newState=toDos;
       console.log('deleting task:', targetitem, toDos);
-      setToDos([...newState])
-      max()
+      //state will only update if I redefine it.
+      setToDos([...newState]);
+      max();
     }
 
     //take the id of the object with the button attached
     //filter down to that specific object
-    //change the status of that object to 'deleted'
+    //change the status of that object to 'done'
     function completeToDo(id, e){
       console.log('target id:', id, e);
-      let targetitem = toDos.find(item=>item.id===id)
-      targetitem.status='done'
-      let newState = toDos
-      console.log('marking as complete task:', targetitem);
-      setToDos([...newState])
-      max()
-      
+      let targetitem = toDos.find(item=>item.id===id);
+      targetitem.status='done';
+      let newState = toDos;
+      console.log(targetitem, toDos);
+      setToDos([...newState]);
+      max();  
     }
 
-    //the x button needs to hand the id of the item to which it is attached over to the delete function
+    //generates the jsx for each todo item.  gives them buttons, assigns an id to each div generated
     function toDoList(toDos){
       const toDoList = toDos.filter(filter).map((item)=>
-        <div key={item.id}>
+        <div key={item.id} className={item.status}>
         <ListItem uniqueId={item.id} text={item.text} status='active'/>
         <button id={item.id} variant='outline-danger' onClick={(e)=>{
           completeToDo(item.id, e)
@@ -67,12 +62,7 @@ export default function ToDoItem({setToDos, toDos, filter, max}){
         <ul>{toDoList}</ul>
         </>
       );
-    }
-    
-      // let tempText="this is hardcoded text"
-      // let tempId='14'
-      // let tempStatus='am I active or completed?'
-      
+    } 
         return (
           <>
           {toDoList(toDos)}

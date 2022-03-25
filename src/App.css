@@ -14,3 +14,7 @@
 .li{
   flex-wrap: nowrap;
 }
+
+.done{
+  text-decoration: line-through;
+}

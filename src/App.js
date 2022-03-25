@@ -3,7 +3,8 @@ import Input from './Input';
 import { Card, Button } from 'react-bootstrap'
 import { useEffect, useState } from 'react';
 import ToDoItem from './ToDoitem';
-import ButtonGroup from './ButtonGroup';
+import Buttons from './FilterButtons';
+import FilterButtons from './FilterButtons';
 
 
 function App() {
@@ -27,20 +28,24 @@ function App() {
           status:'active'
         },
         {
-          text:'click delete or clear to remove completed todos',
+          text:'click clear to remove completed todos',
           id:5678767,
-          status:'done'
+          status:'done',
+          className:'done'
         }
     ]  
   })
-
-  const[filter, setFilter] = useState(() => item => item.status !== 'deleted');
-
   //this saves to local storage
   useEffect(()=>{
     localStorage.setItem('toDos', JSON.stringify(toDos));
   })
 
+
+  const[filter, setFilter] = useState(() => item => item.status !== 'deleted');
+
+  //I know these look weird.  this lets me pass an arrow function as a 
+  //value to modify the filter object in state. it helps me avoid repeating this logic
+  //every time I want to filter
   const showAll = ()=>{
     console.log('all')
     setFilter(()=>item=>item.status!=='deleted')
@@ -54,6 +59,11 @@ function App() {
   const completed = () => {
     console.log('completed')
     setFilter(()=>item=>item.status==='done')
+  }
+
+  const deleted = () => {
+    console.log('deleted')
+    setFilter(()=>item=>item.status==='deleted')
   }
 
   const clear = () => {
@@ -73,7 +83,7 @@ function App() {
   const max= ()=>{
     const overMax = toDos.length-50
       if(overMax>0){
-        console.log('hit the maximum')
+        console.log('removing the oldest todo')
         toDos.splice(0,overMax)
         let newState = toDos
         setToDos([...newState])
@@ -81,23 +91,19 @@ function App() {
     }
 
     return (
-      <>
-        <div>
-            <Card>
-                <Card.Header><h1>To-Do List</h1></Card.Header>
-                <Card.Body>
-                    <Card.Title><Input max={max} setToDos={setToDos} toDos={toDos}/></Card.Title>
-                    <Card.Text>
-                      <div>
-                        <ToDoItem max={max} setToDos={setToDos} toDos={toDos} filter={filter}/>
-                      </div>
-                    </Card.Text>
-                    <ButtonGroup showAll={showAll} active={active} completed={completed} clear={clear}/>
-                </Card.Body>
-            </Card>
-        </div>
-      </>
-  );
+      <Card>
+          <Card.Header><h1>To-Do List</h1></Card.Header>
+          <Card.Body>
+              <Card.Title><Input max={max} setToDos={setToDos} toDos={toDos}/></Card.Title>
+              <Card.Text>
+                <div>
+                  <ToDoItem max={max} setToDos={setToDos} toDos={toDos} filter={filter}/>
+                </div>
+              </Card.Text>
+              <FilterButtons deleted={deleted} showAll={showAll} active={active} completed={completed} clear={clear}/>
+          </Card.Body>
+      </Card>
+    );
 }
 
 export default App;

@@ -27,7 +27,7 @@ const [value, setValue] = useState('')
 
     return (
         <form onSubmit={handleSubmit}>
-            <input onChange={e => setValue(e.target.value)} value={value} placeholder="What's getting added to your list?" />
+            <input onChange={e => setValue(e.target.value)} value={value} placeholder="What's getting done?" />
             <button>Go</button>
         </form>
     )
