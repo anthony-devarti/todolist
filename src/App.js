@@ -1,9 +1,8 @@
 import './App.css';
 import Input from './Input';
-import { Card, Button, Badge } from 'react-bootstrap'
+import { Card, Badge } from 'react-bootstrap'
 import { useEffect, useState } from 'react';
 import ToDoItem from './ToDoitem';
-import Buttons from './FilterButtons';
 import FilterButtons from './FilterButtons';
 
 

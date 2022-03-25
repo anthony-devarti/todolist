@@ -1,5 +1,3 @@
-// import { ToggleButton, Button, outline } from "react-bootstrap"
-// import { useState } from "react";
 
 export default function ToDoItem({setToDos, toDos, filter, max}){  
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map

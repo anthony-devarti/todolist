@@ -1,4 +1,4 @@
-import { InputGroup, Form, FloatingLabel } from "react-bootstrap"
+import { Form } from "react-bootstrap"
 import { useState } from "react";
 
 export default function Input ({setToDos, toDos, max}){
