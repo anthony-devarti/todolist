@@ -2,40 +2,34 @@
 export default function ToDoItem({setToDos, toDos, filter, max}){  
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
     //https://reactjs.org/docs/lists-and-keys.html
-    console.log('I am rendering')
  
-    function ListItem(toDo, uniqueId, status){
-      //console.log('todo', toDo, uniqueId, status)
+    function ListItem(toDo){
       return <li>{toDo.text}</li>
     }
 
     //take the id of the object with the button attached
     //filter down to that specific object
     //change the status of that object to 'deleted'
-    function deleteToDo(id, e){
-      console.log('deleting id:', id, e);
+    function deleteToDo(id){
       let targetitem = toDos.find(item=>item.id===id)
       if (targetitem.status!=='deleted'){
         targetitem.status='deleted';
         let newState=toDos;
-        console.log('deleting task:', targetitem);
         //state will only update if I redefine it.
         setToDos([...newState]);
         max();
       } else if (targetitem.status==='deleted'){
-        console.log('permanently deleting', targetitem.id);
         let crosshairs = toDos.indexOf(targetitem);
         toDos.splice(crosshairs, 1)
         let newState=toDos;
         setToDos([...newState]);
-      } else { console.log('something unexpected is happening')}
+      } else { console.log('The status is somehow neither "deleted" nor is it "not deleted"')}
     }
 
     //take the id of the object with the button attached
     //filter down to that specific object
     //change the status of that object to 'done'
-    function completeToDo(id, e){
-      console.log('target id:', id, e);
+    function completeToDo(id){
       let targetitem = toDos.find(item=>item.id===id);
       if (targetitem.status==='deleted'){
         targetitem.status='active';

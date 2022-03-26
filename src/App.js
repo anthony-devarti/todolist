@@ -53,7 +53,6 @@ function App() {
   }
 
   const clear = () => {
-    console.log("clear");
     toDos.forEach((item) => {
       if (item.status === "done") {
         item.status = "deleted";
@@ -64,7 +63,6 @@ function App() {
   };
 
   const reactivate = () => {
-    console.log("reactivate");
     toDos.forEach((item) => {
       if ((item.status = "done")) {
         item.status = "active";
@@ -80,7 +78,6 @@ function App() {
   const max = () => {
     const overMax = toDos.length - 50;
     if (overMax > 0) {
-      console.log("removing the oldest todo");
       toDos.splice(0, overMax);
       let newState = toDos;
       setToDos([...newState]);
