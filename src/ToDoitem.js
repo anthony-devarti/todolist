@@ -38,7 +38,6 @@ export default function ToDoItem({setToDos, toDos, filter, max}){
       }else{
         targetitem.status='done';
         let newState = toDos;
-        console.log(targetitem, toDos);
         setToDos([...newState]);
         max();
       }    

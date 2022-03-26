@@ -9,14 +9,12 @@ export default function Input({ setToDos, toDos, max }) {
   //this defines the handler for the form submission.
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("click is working");
     let newState = toDos;
     let identifier = Date.now();
     newState.push({ text: value, id: identifier, status: "active" });
     setValue("");
     setToDos([...newState]);
     max();
-    console.log(toDos);
   }
 
   const [value, setValue] = useState("");

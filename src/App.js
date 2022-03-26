@@ -4,6 +4,7 @@ import { Card, Badge } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import ToDoItem from "./ToDoitem";
 import FilterButtons from "./FilterButtons";
+import TasksLeft from "./TasksLeft";
 
 function App() {
   const [toDos, setToDos] = useState(() => {
@@ -111,8 +112,7 @@ function App() {
         />
       </Card.Body>
       <Badge bg="secondary">
-        You have {thisMany} things to do! That's less than {thisMany + 1}{" "}
-        things.
+        <TasksLeft toDos={toDos}/>
       </Badge>
     </Card>
   );
