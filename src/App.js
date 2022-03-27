@@ -85,9 +85,6 @@ function App() {
     }
   };
 
-  let filtered = toDos.filter((item) => item.status === "active");
-  let thisMany = filtered.length;
-
   return (
     <Card>
       <Card.Header>
